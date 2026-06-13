@@ -34,7 +34,7 @@ apis:
       - type: Documentation
         url: https://api.nasa.gov/#MarsPhotos
       - type: OpenAPI
-        url: https://github.com/chrisccerami/mars-photo-api
+        url: https://raw.githubusercontent.com/api-evangelist/nasa-mars/main/openapi/openapi.yml
     contact:
       - FN: NASA APIs Team
         url: https://api.nasa.gov/

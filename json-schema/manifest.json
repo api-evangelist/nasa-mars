@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nasa-mars/main/json-schema/manifest.json",
+  "title": "Manifest",
+  "description": "Mission manifest for a NASA Mars rover, including launch/landing dates, mission status, and per-sol photo breakdowns.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Rover name.",
+      "enum": ["Curiosity", "Opportunity", "Spirit", "Perseverance"]
+    },
+    "landing_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the rover landed on Mars (YYYY-MM-DD)."
+    },
+    "launch_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the rover launched from Earth (YYYY-MM-DD)."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "complete"],
+      "description": "Current mission status."
+    },
+    "max_sol": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Maximum Martian sol reached and stored in the database."
+    },
+    "max_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Maximum Earth date reached and stored in the database."
+    },
+    "total_photos": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total photos taken by this rover stored in the database."
+    },
+    "photos": {
+      "type": "array",
+      "description": "Per-sol summary of photo counts and cameras used.",
+      "items": {
+        "$ref": "#/$defs/SolSummary"
+      }
+    }
+  },
+  "required": ["name", "landing_date", "launch_date", "status", "max_sol", "max_date", "total_photos", "photos"],
+  "$defs": {
+    "SolSummary": {
+      "title": "SolSummary",
+      "description": "Summary of photos taken on a single Martian sol.",
+      "type": "object",
+      "properties": {
+        "sol": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Martian sol number."
+        },
+        "earth_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Earth date corresponding to this sol."
+        },
+        "total_photos": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total photos taken on this sol."
+        },
+        "cameras": {
+          "type": "array",
+          "description": "Cameras used on this sol.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["sol", "earth_date", "total_photos", "cameras"]
+    }
+  }
+}

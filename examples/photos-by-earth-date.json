@@ -1,0 +1,23 @@
+{
+  "photos": [
+    {
+      "id": 102693,
+      "sol": 973,
+      "camera": {
+        "id": 27,
+        "name": "PANCAM",
+        "rover_id": 6,
+        "full_name": "Panoramic Camera"
+      },
+      "img_src": "https://mars.nasa.gov/mer/gallery/all/2/p/973/2P295022085EFFAOH9P2395L7M1.JPG",
+      "earth_date": "2015-06-03",
+      "rover": {
+        "id": 6,
+        "name": "Opportunity",
+        "landing_date": "2004-01-25",
+        "launch_date": "2003-07-07",
+        "status": "complete"
+      }
+    }
+  ]
+}

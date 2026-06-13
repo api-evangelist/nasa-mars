@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nasa-mars/main/json-schema/photo.json",
+  "title": "Photo",
+  "description": "A single Mars rover photo record returned by the NASA Mars Rover Photos API.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the photo."
+    },
+    "sol": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Martian rotation (sol) on which the photo was taken, counting from the rover's landing date."
+    },
+    "camera": {
+      "$ref": "#/$defs/Camera"
+    },
+    "img_src": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the full-resolution image hosted on NASA servers."
+    },
+    "earth_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Earth date on which the photo was taken (YYYY-MM-DD)."
+    },
+    "rover": {
+      "$ref": "#/$defs/RoverSummary"
+    }
+  },
+  "required": ["id", "sol", "camera", "img_src", "earth_date", "rover"],
+  "$defs": {
+    "Camera": {
+      "title": "Camera",
+      "description": "Camera that captured the photo.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string",
+          "description": "Camera abbreviation (e.g., FHAZ, NAVCAM, MAST)."
+        },
+        "rover_id": {
+          "type": "integer"
+        },
+        "full_name": {
+          "type": "string",
+          "description": "Full camera name (e.g., Front Hazard Avoidance Camera)."
+        }
+      },
+      "required": ["id", "name", "rover_id", "full_name"]
+    },
+    "RoverSummary": {
+      "title": "RoverSummary",
+      "description": "Summary rover metadata embedded in photo records.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string",
+          "enum": ["Curiosity", "Opportunity", "Spirit", "Perseverance"]
+        },
+        "landing_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "launch_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "complete"]
+        }
+      },
+      "required": ["id", "name", "landing_date", "launch_date", "status"]
+    }
+  }
+}

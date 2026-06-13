@@ -1,0 +1,114 @@
+vocabulary:
+  - term: sol
+    definition: >
+      A Martian day, approximately 24 hours 39 minutes 35 seconds long. Sols
+      are counted from zero (the rover's landing date) and used to index rover
+      photos and mission timelines.
+
+  - term: rover
+    definition: >
+      A NASA robotic vehicle designed to move across the surface of Mars and
+      conduct scientific experiments. The Mars Rover Photos API covers four
+      rovers: Curiosity, Opportunity, Spirit, and Perseverance.
+
+  - term: camera
+    definition: >
+      An imaging instrument mounted on a Mars rover. Each rover carries
+      multiple cameras with distinct purposes (navigation, hazard avoidance,
+      panoramic imaging, spectroscopy). Cameras are identified by abbreviated
+      names such as FHAZ, NAVCAM, MAST, and PANCAM.
+
+  - term: earth_date
+    definition: >
+      A calendar date in Earth time (YYYY-MM-DD) corresponding to the moment
+      a photo was taken, expressed in Coordinated Universal Time (UTC).
+
+  - term: img_src
+    definition: >
+      The URL of a full-resolution Mars rover image hosted on NASA servers.
+
+  - term: photo_manifest
+    definition: >
+      A summary document for a rover's mission containing launch date, landing
+      date, current status, maximum sol reached, total photos taken, and a
+      per-sol breakdown of photo counts and cameras used.
+
+  - term: max_sol
+    definition: >
+      The highest Martian sol number for which photos have been ingested into
+      the Mars Rover Photos database for a given rover.
+
+  - term: max_date
+    definition: >
+      The most recent Earth date for which photos have been ingested into the
+      Mars Rover Photos database for a given rover.
+
+  - term: total_photos
+    definition: >
+      The total count of photos stored in the Mars Rover Photos database for a
+      given rover, or on a given sol.
+
+  - term: status
+    definition: >
+      The current operational status of a rover mission. "active" means the
+      rover is still operating; "complete" means the mission has ended.
+
+  - term: FHAZ
+    definition: Front Hazard Avoidance Camera — looks down and forward to detect
+      rocks and terrain hazards. Available on Curiosity, Opportunity, and Spirit.
+
+  - term: RHAZ
+    definition: Rear Hazard Avoidance Camera — looks down and rearward. Available
+      on Curiosity, Opportunity, and Spirit.
+
+  - term: MAST
+    definition: Mast Camera — a pair of cameras on Curiosity's mast used for
+      color and science imaging at long range.
+
+  - term: CHEMCAM
+    definition: Chemistry and Camera Complex — fires a laser at rocks and
+      analyzes the resulting plasma spectrum. Curiosity only.
+
+  - term: MAHLI
+    definition: Mars Hand Lens Imager — a close-up camera on Curiosity's robotic
+      arm for macro imaging of rocks and soil.
+
+  - term: MARDI
+    definition: Mars Descent Imager — recorded Curiosity's descent through the
+      Martian atmosphere during landing.
+
+  - term: NAVCAM
+    definition: Navigation Camera — stereo cameras used for driving and
+      navigation. Available on Curiosity, Opportunity, and Spirit.
+
+  - term: PANCAM
+    definition: Panoramic Camera — high-resolution color cameras on Opportunity
+      and Spirit used for wide-angle science imaging.
+
+  - term: MINITES
+    definition: Miniature Thermal Emission Spectrometer — infrared spectrometer
+      on Opportunity and Spirit for mineral identification.
+
+  - term: NAVCAM_LEFT
+    definition: Navigation Camera Left — left stereo navigation camera on
+      Perseverance.
+
+  - term: NAVCAM_RIGHT
+    definition: Navigation Camera Right — right stereo navigation camera on
+      Perseverance.
+
+  - term: MCZ_RIGHT
+    definition: Mast Camera Zoom Right — right zoom camera on Perseverance's
+      mast (Mastcam-Z).
+
+  - term: MCZ_LEFT
+    definition: Mast Camera Zoom Left — left zoom camera on Perseverance's
+      mast (Mastcam-Z).
+
+  - term: SHERLOC_WATSON
+    definition: SHERLOC WATSON Camera — wide-angle topographic sensor on
+      Perseverance's robotic arm used for imaging rock texture and targets.
+
+  - term: SKYCAM
+    definition: MEDA Skycam — a camera part of the Mars Environmental Dynamics
+      Analyzer (MEDA) on Perseverance for monitoring sky and clouds.

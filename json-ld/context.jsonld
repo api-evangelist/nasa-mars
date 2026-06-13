@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "nasa": "https://api.nasa.gov/vocab/mars#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Photo": "nasa:Photo",
+    "Rover": "nasa:Rover",
+    "Camera": "nasa:Camera",
+    "Manifest": "nasa:Manifest",
+    "SolSummary": "nasa:SolSummary",
+
+    "id": "@id",
+
+    "sol": {
+      "@id": "nasa:sol",
+      "@type": "xsd:integer"
+    },
+    "earth_date": {
+      "@id": "nasa:earthDate",
+      "@type": "xsd:date"
+    },
+    "img_src": {
+      "@id": "nasa:imgSrc",
+      "@type": "@id"
+    },
+    "camera": {
+      "@id": "nasa:camera",
+      "@type": "@id"
+    },
+    "rover": {
+      "@id": "nasa:rover",
+      "@type": "@id"
+    },
+    "rover_id": {
+      "@id": "nasa:roverId",
+      "@type": "xsd:integer"
+    },
+    "full_name": {
+      "@id": "name"
+    },
+    "landing_date": {
+      "@id": "nasa:landingDate",
+      "@type": "xsd:date"
+    },
+    "launch_date": {
+      "@id": "nasa:launchDate",
+      "@type": "xsd:date"
+    },
+    "status": {
+      "@id": "nasa:status"
+    },
+    "max_sol": {
+      "@id": "nasa:maxSol",
+      "@type": "xsd:integer"
+    },
+    "max_date": {
+      "@id": "nasa:maxDate",
+      "@type": "xsd:date"
+    },
+    "total_photos": {
+      "@id": "nasa:totalPhotos",
+      "@type": "xsd:integer"
+    },
+    "photos": {
+      "@id": "nasa:photos",
+      "@container": "@set"
+    },
+    "cameras": {
+      "@id": "nasa:cameras",
+      "@container": "@set"
+    },
+    "photo_manifest": {
+      "@id": "nasa:photoManifest",
+      "@type": "@id"
+    }
+  }
+}
