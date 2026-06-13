@@ -1,0 +1,21 @@
+name: NASA Mars Rover Photos API FinOps
+description: The NASA Mars Rover Photos API is a no-cost public API with no financial transactions, billing, or paid tiers. All costs are covered by NASA as part of its public outreach and open data initiatives.
+url: https://api.nasa.gov/
+cost:
+  model: free
+  currency: USD
+  minimumMonthly: 0.00
+  maximumMonthly: 0.00
+billing:
+  required: false
+  creditCard: false
+  methods: []
+budget:
+  alerts: false
+  controls: false
+notes:
+  - No pricing tiers exist; all access is free of charge.
+  - API key registration is required for higher rate limits but has no cost.
+  - NASA funds this service as part of its public data and open government initiatives.
+  - Cost tracking and budget controls are not applicable to this API.
+  - There are no overage charges or usage-based fees.

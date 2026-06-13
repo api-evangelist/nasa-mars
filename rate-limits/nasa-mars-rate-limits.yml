@@ -1,0 +1,32 @@
+name: NASA Mars Rover Photos API Rate Limits
+description: Rate limits for the NASA Mars Rover Photos API are enforced per API key and vary based on registration status.
+url: https://api.nasa.gov/
+limits:
+  - name: DEMO_KEY Hourly Limit
+    description: Unregistered demo key requests are limited to 30 per hour per IP address.
+    quota: 30
+    period: hour
+    scope: ip
+    key: DEMO_KEY
+  - name: DEMO_KEY Daily Limit
+    description: Unregistered demo key requests are limited to 50 per day per IP address.
+    quota: 50
+    period: day
+    scope: ip
+    key: DEMO_KEY
+  - name: Registered Key Hourly Limit
+    description: Registered NASA API keys are permitted up to 1000 requests per hour.
+    quota: 1000
+    period: hour
+    scope: api_key
+    key: registered
+  - name: Registered Key Daily Limit
+    description: Registered NASA API keys are permitted up to 2000 requests per day.
+    quota: 2000
+    period: day
+    scope: api_key
+    key: registered
+notes:
+  - Rate limit headers are not returned in API responses.
+  - Requests exceeding the limit receive an HTTP 429 Too Many Requests response.
+  - To increase limits, register for a free API key at https://api.nasa.gov/.

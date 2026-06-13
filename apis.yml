@@ -1,0 +1,67 @@
+aid: nasa-mars
+name: NASA Mars Rovers
+description: NASA Mars Rover Photos REST API providing images captured by Curiosity, Opportunity, Spirit, and Perseverance Mars rovers, filterable by sol (Martian day), camera type, and Earth date. Includes mission manifest data with landing dates, launch dates, rover status, and per-sol photo breakdowns.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/nasa-mars/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - NASA
+  - Mars
+  - Rovers
+  - Photos
+  - Images
+  - Space
+  - Planetary Science
+  - Open Data
+apis:
+  - aid: nasa-mars:nasa-mars-rover-photos
+    name: NASA Mars Rover Photos API
+    description: Retrieve photos taken by NASA Mars rovers including Curiosity, Opportunity, Spirit, and Perseverance. Query by Martian sol, Earth date, and camera type. Access mission manifests for detailed rover status and photo counts per sol.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://api.nasa.gov/#MarsPhotos
+    baseURL: https://api.nasa.gov/mars-photos/api/v1
+    tags:
+      - Mars
+      - Rovers
+      - Photos
+      - Curiosity
+      - Opportunity
+      - Spirit
+      - Perseverance
+    properties:
+      - type: Documentation
+        url: https://api.nasa.gov/#MarsPhotos
+      - type: OpenAPI
+        url: https://github.com/chrisccerami/mars-photo-api
+    contact:
+      - FN: NASA APIs Team
+        url: https://api.nasa.gov/
+        email: ''
+common:
+  - type: Website
+    url: https://api.nasa.gov/
+  - type: Documentation
+    url: https://api.nasa.gov/#MarsPhotos
+  - type: GitHubOrg
+    url: https://github.com/nasa
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/nasa/
+  - type: Blog
+    url: https://api.nasa.gov/
+  - type: Pricing
+    url: https://api.nasa.gov/
+  - type: StatusPage
+    url: https://status.api.nasa.gov/
+  - type: X
+    url: https://x.com/nasa
+  - type: Plans
+    url: plans/nasa-mars-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/nasa-mars-rate-limits.yml
+  - type: FinOps
+    url: finops/nasa-mars-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

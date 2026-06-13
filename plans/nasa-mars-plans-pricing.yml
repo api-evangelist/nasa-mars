@@ -1,0 +1,31 @@
+name: NASA Mars Rover Photos API Plans
+description: NASA Mars Rover Photos API is a free public service with no paid tiers. Access is governed by API key registration through api.nasa.gov.
+url: https://api.nasa.gov/
+plans:
+  - name: DEMO_KEY
+    description: No-registration demo access for testing and exploration. Heavily rate-limited.
+    price: 0.00
+    currency: USD
+    billing: none
+    rateLimit:
+      requests: 30
+      period: hour
+    features:
+      - Access to all rover photo endpoints
+      - Mission manifest endpoint
+      - Latest photos endpoint
+      - No registration required
+  - name: Registered API Key
+    description: Free registered API key obtained from api.nasa.gov. Higher rate limits suitable for development and production use.
+    price: 0.00
+    currency: USD
+    billing: none
+    rateLimit:
+      requests: 1000
+      period: hour
+    features:
+      - Access to all rover photo endpoints
+      - Mission manifest endpoint
+      - Latest photos endpoint
+      - Higher hourly request quota
+      - Email registration required
