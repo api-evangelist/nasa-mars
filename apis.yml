@@ -1,7 +1,7 @@
 aid: nasa-mars
 name: NASA Mars Rovers
 description: NASA Mars Rover Photos REST API providing images captured by Curiosity, Opportunity, Spirit, and Perseverance Mars rovers, filterable by sol (Martian day), camera type, and Earth date. Includes mission manifest data with landing dates, launch dates, rover status, and per-sol photo breakdowns.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/nasa-mars/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -19,7 +19,7 @@ apis:
   - aid: nasa-mars:nasa-mars-rover-photos
     name: NASA Mars Rover Photos API
     description: Retrieve photos taken by NASA Mars rovers including Curiosity, Opportunity, Spirit, and Perseverance. Query by Martian sol, Earth date, and camera type. Access mission manifests for detailed rover status and photo counts per sol.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://api.nasa.gov/#MarsPhotos
     baseURL: https://api.nasa.gov/mars-photos/api/v1
     tags:
