@@ -2,13 +2,13 @@
   "repo": "nasa-mars",
   "feeds": [
     {
-      "source": "https://www.linkedin.com/company/nasa/",
-      "feed_url": "https://www.linkedin.com/company/nasa/",
-      "title": "",
+      "source": "https://api.nasa.gov/",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:55:43Z",
+  "agent_pulled": "2026-06-27"
 }
