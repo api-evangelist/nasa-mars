@@ -40,6 +40,10 @@ apis:
         url: https://api.nasa.gov/
         email: ''
 common:
+  - type: DomainSecurity
+    url: security/nasa-mars-domain-security.yml
+  - type: Authentication
+    url: authentication/nasa-mars-authentication.yml
   - type: Website
     url: https://api.nasa.gov/
   - type: Documentation
