@@ -1,0 +1,232 @@
+openapi: 3.0.3
+info:
+  title: NASA Mars Rover Manifests Photos API
+  description: 'REST API providing images captured by NASA''s Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.
+
+    '
+  version: 1.1.2
+  contact:
+    name: NASA APIs Team
+    url: https://api.nasa.gov/
+  license:
+    name: Public Domain (U.S. Government Work)
+    url: https://www.usa.gov/government-works
+servers:
+- url: https://api.nasa.gov/mars-photos/api/v1
+  description: NASA Open APIs production server
+security:
+- apiKeyQuery: []
+tags:
+- name: Photos
+  description: Retrieve rover photos filtered by sol, Earth date, and camera.
+paths:
+  /rovers/{rover}/photos:
+    get:
+      operationId: getRoverPhotosBySol
+      summary: Get rover photos by sol or Earth date
+      description: 'Retrieve photos taken by a Mars rover. Photos may be filtered by Martian sol, Earth date, and/or camera type. One of `sol` or `earth_date` is required.
+
+        '
+      tags:
+      - Photos
+      parameters:
+      - $ref: '#/components/parameters/rover'
+      - name: sol
+        in: query
+        description: 'Martian rotation (sol) on which photos were taken, counting from the rover''s landing date (sol 0). Cannot be combined with `earth_date`.
+
+          '
+        schema:
+          type: integer
+          minimum: 0
+          example: 1000
+      - name: earth_date
+        in: query
+        description: 'Earth date on which photos were taken, formatted as YYYY-MM-DD. The earliest date available is the rover''s landing date. Cannot be combined with `sol`.
+
+          '
+        schema:
+          type: string
+          format: date
+          example: '2015-06-03'
+      - name: camera
+        in: query
+        description: 'Filter photos by camera abbreviation. Not case sensitive. Valid values vary by rover; see documentation for per-rover camera tables.
+
+          '
+        schema:
+          type: string
+          example: FHAZ
+      - name: page
+        in: query
+        description: Page number of results (25 photos per page).
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - $ref: '#/components/parameters/apiKey'
+      responses:
+        '200':
+          description: A list of photos matching the query parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhotosResponse'
+              example:
+                photos:
+                - id: 424905
+                  sol: 1000
+                  camera:
+                    id: 20
+                    name: FHAZ
+                    rover_id: 5
+                    full_name: Front Hazard Avoidance Camera
+                  img_src: https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG
+                  earth_date: '2015-05-30'
+                  rover:
+                    id: 5
+                    name: Curiosity
+                    landing_date: '2012-08-06'
+                    launch_date: '2011-11-26'
+                    status: active
+        '400':
+          description: Bad request — missing required parameter or invalid values.
+        '403':
+          description: Forbidden — invalid or missing API key.
+  /rovers/{rover}/latest_photos:
+    get:
+      operationId: getRoverLatestPhotos
+      summary: Get the most recent photos for a rover
+      description: 'Returns photo data for the most recent Martian sol on which photos exist for the specified rover.
+
+        '
+      tags:
+      - Photos
+      parameters:
+      - $ref: '#/components/parameters/rover'
+      - $ref: '#/components/parameters/apiKey'
+      responses:
+        '200':
+          description: The latest photos for the rover.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LatestPhotosResponse'
+        '403':
+          description: Forbidden — invalid or missing API key.
+components:
+  schemas:
+    LatestPhotosResponse:
+      type: object
+      properties:
+        latest_photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+    Photo:
+      type: object
+      description: A single rover photo record.
+      properties:
+        id:
+          type: integer
+          description: Unique photo identifier.
+          example: 424905
+        sol:
+          type: integer
+          description: Martian sol on which the photo was taken.
+          example: 1000
+        camera:
+          $ref: '#/components/schemas/Camera'
+        img_src:
+          type: string
+          format: uri
+          description: URL of the full-resolution image.
+          example: https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG
+        earth_date:
+          type: string
+          format: date
+          description: Earth date on which the photo was taken.
+          example: '2015-05-30'
+        rover:
+          $ref: '#/components/schemas/RoverSummary'
+    RoverSummary:
+      type: object
+      description: Summary rover metadata embedded in photo records.
+      properties:
+        id:
+          type: integer
+          example: 5
+        name:
+          type: string
+          example: Curiosity
+        landing_date:
+          type: string
+          format: date
+          example: '2012-08-06'
+        launch_date:
+          type: string
+          format: date
+          example: '2011-11-26'
+        status:
+          type: string
+          description: Current mission status.
+          enum:
+          - active
+          - complete
+          example: active
+    PhotosResponse:
+      type: object
+      properties:
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+    Camera:
+      type: object
+      description: Camera metadata attached to a photo record.
+      properties:
+        id:
+          type: integer
+          example: 20
+        name:
+          type: string
+          description: Camera abbreviation.
+          example: FHAZ
+        rover_id:
+          type: integer
+          example: 5
+        full_name:
+          type: string
+          description: Full human-readable camera name.
+          example: Front Hazard Avoidance Camera
+  parameters:
+    rover:
+      name: rover
+      in: path
+      required: true
+      description: Name of the Mars rover.
+      schema:
+        type: string
+        enum:
+        - curiosity
+        - opportunity
+        - spirit
+        - perseverance
+        example: curiosity
+    apiKey:
+      name: api_key
+      in: query
+      required: false
+      description: NASA API key. Use DEMO_KEY for testing.
+      schema:
+        type: string
+        default: DEMO_KEY
+        example: DEMO_KEY
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+externalDocs:
+  description: NASA Open APIs Documentation
+  url: https://api.nasa.gov/#MarsPhotos

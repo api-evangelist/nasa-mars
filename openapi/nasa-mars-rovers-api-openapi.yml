@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  title: NASA Mars Rover Photos Manifests Rovers API
+  description: 'REST API providing images captured by NASA''s Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.
+
+    '
+  version: 1.1.2
+  contact:
+    name: NASA APIs Team
+    url: https://api.nasa.gov/
+  license:
+    name: Public Domain (U.S. Government Work)
+    url: https://www.usa.gov/government-works
+servers:
+- url: https://api.nasa.gov/mars-photos/api/v1
+  description: NASA Open APIs production server
+security:
+- apiKeyQuery: []
+tags:
+- name: Rovers
+  description: List and inspect Mars rover records.
+paths:
+  /rovers:
+    get:
+      operationId: listRovers
+      summary: List all Mars rovers
+      description: Returns a list of all Mars rovers and their mission details.
+      tags:
+      - Rovers
+      parameters:
+      - $ref: '#/components/parameters/apiKey'
+      responses:
+        '200':
+          description: A list of rover objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoversResponse'
+        '403':
+          description: Forbidden — invalid or missing API key.
+components:
+  schemas:
+    Rover:
+      type: object
+      description: Full rover record.
+      properties:
+        id:
+          type: integer
+          example: 5
+        name:
+          type: string
+          example: Curiosity
+        landing_date:
+          type: string
+          format: date
+          example: '2012-08-06'
+        launch_date:
+          type: string
+          format: date
+          example: '2011-11-26'
+        status:
+          type: string
+          enum:
+          - active
+          - complete
+          example: active
+        max_sol:
+          type: integer
+          example: 4102
+        max_date:
+          type: string
+          format: date
+          example: '2024-03-15'
+        total_photos:
+          type: integer
+          example: 695670
+        cameras:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              rover_id:
+                type: integer
+              full_name:
+                type: string
+    RoversResponse:
+      type: object
+      properties:
+        rovers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rover'
+  parameters:
+    apiKey:
+      name: api_key
+      in: query
+      required: false
+      description: NASA API key. Use DEMO_KEY for testing.
+      schema:
+        type: string
+        default: DEMO_KEY
+        example: DEMO_KEY
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+externalDocs:
+  description: NASA Open APIs Documentation
+  url: https://api.nasa.gov/#MarsPhotos

@@ -1,0 +1,165 @@
+openapi: 3.0.3
+info:
+  title: NASA Mars Rover Photos Manifests API
+  description: 'REST API providing images captured by NASA''s Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.
+
+    '
+  version: 1.1.2
+  contact:
+    name: NASA APIs Team
+    url: https://api.nasa.gov/
+  license:
+    name: Public Domain (U.S. Government Work)
+    url: https://www.usa.gov/government-works
+servers:
+- url: https://api.nasa.gov/mars-photos/api/v1
+  description: NASA Open APIs production server
+security:
+- apiKeyQuery: []
+tags:
+- name: Manifests
+  description: Mission manifest data per rover.
+paths:
+  /manifests/{rover}:
+    get:
+      operationId: getRoverManifest
+      summary: Get mission manifest for a rover
+      description: 'Returns mission manifest data for the specified rover, including launch date, landing date, status, maximum sol reached, maximum Earth date reached, total photos taken, and a per-sol summary of photo counts and cameras used.
+
+        '
+      tags:
+      - Manifests
+      parameters:
+      - $ref: '#/components/parameters/roverManifest'
+      - $ref: '#/components/parameters/apiKey'
+      responses:
+        '200':
+          description: Mission manifest for the rover.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManifestResponse'
+              example:
+                photo_manifest:
+                  name: Curiosity
+                  landing_date: '2012-08-06'
+                  launch_date: '2011-11-26'
+                  status: active
+                  max_sol: 4102
+                  max_date: '2024-03-15'
+                  total_photos: 695670
+                  photos:
+                  - sol: 0
+                    earth_date: '2012-08-06'
+                    total_photos: 3702
+                    cameras:
+                    - CHEMCAM
+                    - FHAZ
+                    - MARDI
+                    - RHAZ
+        '403':
+          description: Forbidden — invalid or missing API key.
+components:
+  schemas:
+    ManifestResponse:
+      type: object
+      properties:
+        photo_manifest:
+          $ref: '#/components/schemas/Manifest'
+    Manifest:
+      type: object
+      description: Full mission manifest for a rover.
+      properties:
+        name:
+          type: string
+          example: Curiosity
+        landing_date:
+          type: string
+          format: date
+          example: '2012-08-06'
+        launch_date:
+          type: string
+          format: date
+          example: '2011-11-26'
+        status:
+          type: string
+          enum:
+          - active
+          - complete
+          example: active
+        max_sol:
+          type: integer
+          description: Maximum sol reached in the database.
+          example: 4102
+        max_date:
+          type: string
+          format: date
+          description: Maximum Earth date reached in the database.
+          example: '2024-03-15'
+        total_photos:
+          type: integer
+          description: Total photos in the database for this rover.
+          example: 695670
+        photos:
+          type: array
+          description: Per-sol breakdown of photo counts and cameras.
+          items:
+            $ref: '#/components/schemas/SolSummary'
+    SolSummary:
+      type: object
+      description: Per-sol summary entry within a mission manifest.
+      properties:
+        sol:
+          type: integer
+          description: Martian sol number.
+          example: 0
+        earth_date:
+          type: string
+          format: date
+          description: Earth date corresponding to this sol.
+          example: '2012-08-06'
+        total_photos:
+          type: integer
+          description: Total photos taken on this sol.
+          example: 3702
+        cameras:
+          type: array
+          description: Cameras used on this sol.
+          items:
+            type: string
+          example:
+          - CHEMCAM
+          - FHAZ
+          - MARDI
+          - RHAZ
+  parameters:
+    roverManifest:
+      name: rover
+      in: path
+      required: true
+      description: Name of the Mars rover.
+      schema:
+        type: string
+        enum:
+        - Curiosity
+        - Opportunity
+        - Spirit
+        - Perseverance
+        example: Curiosity
+    apiKey:
+      name: api_key
+      in: query
+      required: false
+      description: NASA API key. Use DEMO_KEY for testing.
+      schema:
+        type: string
+        default: DEMO_KEY
+        example: DEMO_KEY
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+externalDocs:
+  description: NASA Open APIs Documentation
+  url: https://api.nasa.gov/#MarsPhotos
