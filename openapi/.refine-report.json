@@ -1,0 +1,18 @@
+{
+  "provider": "nasa-mars",
+  "sources": [
+    "nasa-mars-manifests-api-openapi.yml",
+    "nasa-mars-photos-api-openapi.yml",
+    "nasa-mars-rovers-api-openapi.yml"
+  ],
+  "outputs": [
+    "nasa-mars-manifests-api-openapi.yml",
+    "nasa-mars-photos-api-openapi.yml",
+    "nasa-mars-rovers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
