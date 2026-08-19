@@ -1,0 +1,200 @@
+{
+  "item": [
+    {
+      "id": "e602f260-c9ee-4b45-bccc-5c0790bfbbe1",
+      "name": "Manifests",
+      "description": {
+        "content": "Mission manifest data per rover.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "96bd7f14-2af8-4dd4-ace1-81202d41a82b",
+          "name": "Get mission manifest for a rover",
+          "request": {
+            "name": "Get mission manifest for a rover",
+            "description": {
+              "content": "Returns mission manifest data for the specified rover, including launch date, landing date, status, maximum sol reached, maximum Earth date reached, total photos taken, and a per-sol summary of photo counts and cameras used.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manifests",
+                ":rover"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "DEMO_KEY",
+                  "description": "NASA API key. Use DEMO_KEY for testing."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rover",
+                  "description": "(Required) Name of the Mars rover."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c8167ac-ae0c-47a9-b380-484b7505feab",
+              "name": "Mission manifest for the rover.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manifests",
+                    ":rover"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "DEMO_KEY"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rover",
+                      "description": "(Required) Name of the Mars rover."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"photo_manifest\": {\n    \"name\": \"Curiosity\",\n    \"landing_date\": \"2012-08-06\",\n    \"launch_date\": \"2011-11-26\",\n    \"status\": \"active\",\n    \"max_sol\": 4102,\n    \"max_date\": \"2024-03-15\",\n    \"total_photos\": 695670,\n    \"photos\": [\n      {\n        \"sol\": 0,\n        \"earth_date\": \"2012-08-06\",\n        \"total_photos\": 3702,\n        \"cameras\": [\n          \"CHEMCAM\",\n          \"FHAZ\",\n          \"MARDI\",\n          \"RHAZ\"\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d14a2dcb-235e-4de1-b9fa-8c5f0046f3f6",
+              "name": "Forbidden — invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manifests",
+                    ":rover"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "DEMO_KEY"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rover",
+                      "description": "(Required) Name of the Mars rover."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nasa.gov/mars-photos/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d975ac20-38ec-4fd7-adcf-7b0878c165f2",
+    "name": "NASA Mars Rover Photos Manifests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API providing images captured by NASA's Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.\n\n\nContact Support:\n Name: NASA APIs Team",
+      "type": "text/plain"
+    }
+  }
+}

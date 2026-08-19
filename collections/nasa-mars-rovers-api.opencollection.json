@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NASA Mars Rover Photos Manifests Rovers API",
+    "version": "1.1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rovers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Mars rovers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nasa.gov/mars-photos/api/v1/rovers",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "NASA API key. Use DEMO_KEY for testing."
+              }
+            ]
+          },
+          "docs": "Returns a list of all Mars rovers and their mission details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

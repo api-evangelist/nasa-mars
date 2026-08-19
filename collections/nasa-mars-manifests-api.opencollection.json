@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NASA Mars Rover Photos Manifests API",
+    "version": "1.1.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manifests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get mission manifest for a rover",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nasa.gov/mars-photos/api/v1/manifests/:rover",
+            "params": [
+              {
+                "name": "rover",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Mars rover."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "NASA API key. Use DEMO_KEY for testing."
+              }
+            ]
+          },
+          "docs": "Returns mission manifest data for the specified rover, including launch date, landing date, status, maximum sol reached, maximum Earth date reached, total photos taken, and a per-sol summary of photo counts and cameras used.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

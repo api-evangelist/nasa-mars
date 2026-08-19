@@ -1,0 +1,477 @@
+{
+  "item": [
+    {
+      "id": "e61616a1-9a2a-45ef-815b-4be516234a86",
+      "name": "Photos",
+      "description": {
+        "content": "Retrieve rover photos filtered by sol, Earth date, and camera.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "145de1c0-309a-49a2-bc0f-8d2cf706a6d6",
+          "name": "Get rover photos by sol or Earth date",
+          "request": {
+            "name": "Get rover photos by sol or Earth date",
+            "description": {
+              "content": "Retrieve photos taken by a Mars rover. Photos may be filtered by Martian sol, Earth date, and/or camera type. One of `sol` or `earth_date` is required.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rovers",
+                ":rover",
+                "photos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sol",
+                  "value": "<integer>",
+                  "description": "Martian rotation (sol) on which photos were taken, counting from the rover's landing date (sol 0). Cannot be combined with `earth_date`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "earth_date",
+                  "value": "<date>",
+                  "description": "Earth date on which photos were taken, formatted as YYYY-MM-DD. The earliest date available is the rover's landing date. Cannot be combined with `sol`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "camera",
+                  "value": "<string>",
+                  "description": "Filter photos by camera abbreviation. Not case sensitive. Valid values vary by rover; see documentation for per-rover camera tables.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number of results (25 photos per page)."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "DEMO_KEY",
+                  "description": "NASA API key. Use DEMO_KEY for testing."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rover",
+                  "description": "(Required) Name of the Mars rover."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45a01faf-9d14-48a5-844e-2f973f66e3e9",
+              "name": "A list of photos matching the query parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rovers",
+                    ":rover",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sol",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "earth_date",
+                      "value": "2015-06-03"
+                    },
+                    {
+                      "key": "camera",
+                      "value": "FHAZ"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "DEMO_KEY"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rover",
+                      "description": "(Required) Name of the Mars rover."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"photos\": [\n    {\n      \"id\": 424905,\n      \"sol\": 1000,\n      \"camera\": {\n        \"id\": 20,\n        \"name\": \"FHAZ\",\n        \"rover_id\": 5,\n        \"full_name\": \"Front Hazard Avoidance Camera\"\n      },\n      \"img_src\": \"https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG\",\n      \"earth_date\": \"2015-05-30\",\n      \"rover\": {\n        \"id\": 5,\n        \"name\": \"Curiosity\",\n        \"landing_date\": \"2012-08-06\",\n        \"launch_date\": \"2011-11-26\",\n        \"status\": \"active\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bddbe58-caea-40bc-a1a9-932763ce621b",
+              "name": "Bad request — missing required parameter or invalid values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rovers",
+                    ":rover",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sol",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "earth_date",
+                      "value": "2015-06-03"
+                    },
+                    {
+                      "key": "camera",
+                      "value": "FHAZ"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "DEMO_KEY"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rover",
+                      "description": "(Required) Name of the Mars rover."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1c8c7eca-4e39-42f0-8854-310f12280ebc",
+              "name": "Forbidden — invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rovers",
+                    ":rover",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sol",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "earth_date",
+                      "value": "2015-06-03"
+                    },
+                    {
+                      "key": "camera",
+                      "value": "FHAZ"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "DEMO_KEY"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rover",
+                      "description": "(Required) Name of the Mars rover."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e5dc58b-85cf-44d4-9d3e-1abefd99308e",
+          "name": "Get the most recent photos for a rover",
+          "request": {
+            "name": "Get the most recent photos for a rover",
+            "description": {
+              "content": "Returns photo data for the most recent Martian sol on which photos exist for the specified rover.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rovers",
+                ":rover",
+                "latest_photos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "DEMO_KEY",
+                  "description": "NASA API key. Use DEMO_KEY for testing."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rover",
+                  "description": "(Required) Name of the Mars rover."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1820904-ff5d-4172-8f7d-ce7344cde984",
+              "name": "The latest photos for the rover.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rovers",
+                    ":rover",
+                    "latest_photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "DEMO_KEY"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rover",
+                      "description": "(Required) Name of the Mars rover."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"latest_photos\": [\n    {\n      \"id\": 424905,\n      \"sol\": 1000,\n      \"camera\": {\n        \"id\": 20,\n        \"name\": \"FHAZ\",\n        \"rover_id\": 5,\n        \"full_name\": \"Front Hazard Avoidance Camera\"\n      },\n      \"img_src\": \"https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG\",\n      \"earth_date\": \"2015-05-30\",\n      \"rover\": {\n        \"id\": 5,\n        \"name\": \"Curiosity\",\n        \"landing_date\": \"2012-08-06\",\n        \"launch_date\": \"2011-11-26\",\n        \"status\": \"active\"\n      }\n    },\n    {\n      \"id\": 424905,\n      \"sol\": 1000,\n      \"camera\": {\n        \"id\": 20,\n        \"name\": \"FHAZ\",\n        \"rover_id\": 5,\n        \"full_name\": \"Front Hazard Avoidance Camera\"\n      },\n      \"img_src\": \"https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486615455EDR_F0481570FHAZ00323M_.JPG\",\n      \"earth_date\": \"2015-05-30\",\n      \"rover\": {\n        \"id\": 5,\n        \"name\": \"Curiosity\",\n        \"landing_date\": \"2012-08-06\",\n        \"launch_date\": \"2011-11-26\",\n        \"status\": \"active\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4573556-c2ff-4812-a065-903cb971cd79",
+              "name": "Forbidden — invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rovers",
+                    ":rover",
+                    "latest_photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "DEMO_KEY"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rover",
+                      "description": "(Required) Name of the Mars rover."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nasa.gov/mars-photos/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "02f269f5-05d5-42a9-9572-c863546dd422",
+    "name": "NASA Mars Rover Manifests Photos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API providing images captured by NASA's Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.\n\n\nContact Support:\n Name: NASA APIs Team",
+      "type": "text/plain"
+    }
+  }
+}

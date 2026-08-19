@@ -1,0 +1,173 @@
+{
+  "item": [
+    {
+      "id": "4d40771a-1c78-4f3f-be0d-bcfae13dfaea",
+      "name": "Rovers",
+      "description": {
+        "content": "List and inspect Mars rover records.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a2897f75-0400-4121-9692-05158baf04fc",
+          "name": "List all Mars rovers",
+          "request": {
+            "name": "List all Mars rovers",
+            "description": {
+              "content": "Returns a list of all Mars rovers and their mission details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rovers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "DEMO_KEY",
+                  "description": "NASA API key. Use DEMO_KEY for testing."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b5ef582-ed8e-4f3d-a2fb-1d20ba83cb90",
+              "name": "A list of rover objects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rovers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "DEMO_KEY"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rovers\": [\n    {\n      \"id\": 5,\n      \"name\": \"Curiosity\",\n      \"landing_date\": \"2012-08-06\",\n      \"launch_date\": \"2011-11-26\",\n      \"status\": \"active\",\n      \"max_sol\": 4102,\n      \"max_date\": \"2024-03-15\",\n      \"total_photos\": 695670,\n      \"cameras\": [\n        {\n          \"id\": 8026,\n          \"name\": \"string\",\n          \"rover_id\": 9735,\n          \"full_name\": \"string\"\n        },\n        {\n          \"id\": 980,\n          \"name\": \"string\",\n          \"rover_id\": 6974,\n          \"full_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Curiosity\",\n      \"landing_date\": \"2012-08-06\",\n      \"launch_date\": \"2011-11-26\",\n      \"status\": \"active\",\n      \"max_sol\": 4102,\n      \"max_date\": \"2024-03-15\",\n      \"total_photos\": 695670,\n      \"cameras\": [\n        {\n          \"id\": 9549,\n          \"name\": \"string\",\n          \"rover_id\": 5668,\n          \"full_name\": \"string\"\n        },\n        {\n          \"id\": 399,\n          \"name\": \"string\",\n          \"rover_id\": 3736,\n          \"full_name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c4bdc71-b9d7-4e2b-b9cf-909eaaab7469",
+              "name": "Forbidden — invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rovers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "DEMO_KEY"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nasa.gov/mars-photos/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "82dcb339-74b2-4df0-9a72-2c5199b4fe88",
+    "name": "NASA Mars Rover Photos Manifests Rovers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API providing images captured by NASA's Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.\n\n\nContact Support:\n Name: NASA APIs Team",
+      "type": "text/plain"
+    }
+  }
+}
