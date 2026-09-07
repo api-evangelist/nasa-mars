@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: NASA Mars Rover Manifests Photos API
   description: 'REST API providing images captured by NASA''s Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.
@@ -116,6 +116,31 @@ paths:
           description: Forbidden — invalid or missing API key.
 components:
   schemas:
+    PhotosResponse:
+      type: object
+      properties:
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+    Camera:
+      type: object
+      description: Camera metadata attached to a photo record.
+      properties:
+        id:
+          type: integer
+          example: 20
+        name:
+          type: string
+          description: Camera abbreviation.
+          example: FHAZ
+        rover_id:
+          type: integer
+          example: 5
+        full_name:
+          type: string
+          description: Full human-readable camera name.
+          example: Front Hazard Avoidance Camera
     LatestPhotosResponse:
       type: object
       properties:
@@ -174,31 +199,6 @@ components:
           - active
           - complete
           example: active
-    PhotosResponse:
-      type: object
-      properties:
-        photos:
-          type: array
-          items:
-            $ref: '#/components/schemas/Photo'
-    Camera:
-      type: object
-      description: Camera metadata attached to a photo record.
-      properties:
-        id:
-          type: integer
-          example: 20
-        name:
-          type: string
-          description: Camera abbreviation.
-          example: FHAZ
-        rover_id:
-          type: integer
-          example: 5
-        full_name:
-          type: string
-          description: Full human-readable camera name.
-          example: Front Hazard Avoidance Camera
   parameters:
     rover:
       name: rover

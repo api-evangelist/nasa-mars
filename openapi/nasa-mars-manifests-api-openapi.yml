@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: NASA Mars Rover Photos Manifests API
   description: 'REST API providing images captured by NASA''s Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.
@@ -60,12 +60,30 @@ paths:
         '403':
           description: Forbidden — invalid or missing API key.
 components:
+  parameters:
+    roverManifest:
+      name: rover
+      in: path
+      required: true
+      description: Name of the Mars rover.
+      schema:
+        type: string
+        enum:
+        - Curiosity
+        - Opportunity
+        - Spirit
+        - Perseverance
+        example: Curiosity
+    apiKey:
+      name: api_key
+      in: query
+      required: false
+      description: NASA API key. Use DEMO_KEY for testing.
+      schema:
+        type: string
+        default: DEMO_KEY
+        example: DEMO_KEY
   schemas:
-    ManifestResponse:
-      type: object
-      properties:
-        photo_manifest:
-          $ref: '#/components/schemas/Manifest'
     Manifest:
       type: object
       description: Full mission manifest for a rover.
@@ -105,6 +123,11 @@ components:
           description: Per-sol breakdown of photo counts and cameras.
           items:
             $ref: '#/components/schemas/SolSummary'
+    ManifestResponse:
+      type: object
+      properties:
+        photo_manifest:
+          $ref: '#/components/schemas/Manifest'
     SolSummary:
       type: object
       description: Per-sol summary entry within a mission manifest.
@@ -132,29 +155,6 @@ components:
           - FHAZ
           - MARDI
           - RHAZ
-  parameters:
-    roverManifest:
-      name: rover
-      in: path
-      required: true
-      description: Name of the Mars rover.
-      schema:
-        type: string
-        enum:
-        - Curiosity
-        - Opportunity
-        - Spirit
-        - Perseverance
-        example: Curiosity
-    apiKey:
-      name: api_key
-      in: query
-      required: false
-      description: NASA API key. Use DEMO_KEY for testing.
-      schema:
-        type: string
-        default: DEMO_KEY
-        example: DEMO_KEY
   securitySchemes:
     apiKeyQuery:
       type: apiKey
