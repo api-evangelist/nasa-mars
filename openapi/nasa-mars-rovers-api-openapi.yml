@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
-  title: NASA Mars Rover Photos Manifests Rovers API
-  description: 'REST API providing images captured by NASA''s Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.
-
-    '
+  title: NASA Mars Rover Photos Rovers API
+  description: REST API providing images captured by NASA's Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.
   version: 1.1.2
   contact:
     name: NASA APIs Team
@@ -39,16 +37,6 @@ paths:
         '403':
           description: Forbidden — invalid or missing API key.
 components:
-  parameters:
-    apiKey:
-      name: api_key
-      in: query
-      required: false
-      description: NASA API key. Use DEMO_KEY for testing.
-      schema:
-        type: string
-        default: DEMO_KEY
-        example: DEMO_KEY
   schemas:
     Rover:
       type: object
@@ -104,6 +92,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rover'
+  parameters:
+    apiKey:
+      name: api_key
+      in: query
+      required: false
+      description: NASA API key. Use DEMO_KEY for testing.
+      schema:
+        type: string
+        default: DEMO_KEY
+        example: DEMO_KEY
   securitySchemes:
     apiKeyQuery:
       type: apiKey

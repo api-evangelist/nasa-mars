@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: NASA Mars Rover Photos Manifests API
-  description: 'REST API providing images captured by NASA''s Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.
-
-    '
+  description: REST API providing images captured by NASA's Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.
   version: 1.1.2
   contact:
     name: NASA APIs Team
@@ -24,9 +22,7 @@ paths:
     get:
       operationId: getRoverManifest
       summary: Get mission manifest for a rover
-      description: 'Returns mission manifest data for the specified rover, including launch date, landing date, status, maximum sol reached, maximum Earth date reached, total photos taken, and a per-sol summary of photo counts and cameras used.
-
-        '
+      description: Returns mission manifest data for the specified rover, including launch date, landing date, status, maximum sol reached, maximum Earth date reached, total photos taken, and a per-sol summary of photo counts and cameras used.
       tags:
       - Manifests
       parameters:
@@ -84,6 +80,38 @@ components:
         default: DEMO_KEY
         example: DEMO_KEY
   schemas:
+    ManifestResponse:
+      type: object
+      properties:
+        photo_manifest:
+          $ref: '#/components/schemas/Manifest'
+    SolSummary:
+      type: object
+      description: Per-sol summary entry within a mission manifest.
+      properties:
+        sol:
+          type: integer
+          description: Martian sol number.
+          example: 0
+        earth_date:
+          type: string
+          format: date
+          description: Earth date corresponding to this sol.
+          example: '2012-08-06'
+        total_photos:
+          type: integer
+          description: Total photos taken on this sol.
+          example: 3702
+        cameras:
+          type: array
+          description: Cameras used on this sol.
+          items:
+            type: string
+          example:
+          - CHEMCAM
+          - FHAZ
+          - MARDI
+          - RHAZ
     Manifest:
       type: object
       description: Full mission manifest for a rover.
@@ -123,38 +151,6 @@ components:
           description: Per-sol breakdown of photo counts and cameras.
           items:
             $ref: '#/components/schemas/SolSummary'
-    ManifestResponse:
-      type: object
-      properties:
-        photo_manifest:
-          $ref: '#/components/schemas/Manifest'
-    SolSummary:
-      type: object
-      description: Per-sol summary entry within a mission manifest.
-      properties:
-        sol:
-          type: integer
-          description: Martian sol number.
-          example: 0
-        earth_date:
-          type: string
-          format: date
-          description: Earth date corresponding to this sol.
-          example: '2012-08-06'
-        total_photos:
-          type: integer
-          description: Total photos taken on this sol.
-          example: 3702
-        cameras:
-          type: array
-          description: Cameras used on this sol.
-          items:
-            type: string
-          example:
-          - CHEMCAM
-          - FHAZ
-          - MARDI
-          - RHAZ
   securitySchemes:
     apiKeyQuery:
       type: apiKey

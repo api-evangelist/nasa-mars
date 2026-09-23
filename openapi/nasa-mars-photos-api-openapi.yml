@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
-  title: NASA Mars Rover Manifests Photos API
-  description: 'REST API providing images captured by NASA''s Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.
-
-    '
+  title: NASA Mars Rover Photos API
+  description: REST API providing images captured by NASA's Curiosity, Opportunity, Spirit, and Perseverance Mars rovers. Photos can be queried by Martian sol (day since landing), Earth date, and camera type. Mission manifest data is available per rover with landing dates, launch dates, rover status, and per-sol photo breakdowns.
   version: 1.1.2
   contact:
     name: NASA APIs Team
@@ -24,9 +22,7 @@ paths:
     get:
       operationId: getRoverPhotosBySol
       summary: Get rover photos by sol or Earth date
-      description: 'Retrieve photos taken by a Mars rover. Photos may be filtered by Martian sol, Earth date, and/or camera type. One of `sol` or `earth_date` is required.
-
-        '
+      description: Retrieve photos taken by a Mars rover. Photos may be filtered by Martian sol, Earth date, and/or camera type. One of `sol` or `earth_date` is required.
       tags:
       - Photos
       parameters:
@@ -97,9 +93,7 @@ paths:
     get:
       operationId: getRoverLatestPhotos
       summary: Get the most recent photos for a rover
-      description: 'Returns photo data for the most recent Martian sol on which photos exist for the specified rover.
-
-        '
+      description: Returns photo data for the most recent Martian sol on which photos exist for the specified rover.
       tags:
       - Photos
       parameters:
@@ -116,13 +110,6 @@ paths:
           description: Forbidden — invalid or missing API key.
 components:
   schemas:
-    PhotosResponse:
-      type: object
-      properties:
-        photos:
-          type: array
-          items:
-            $ref: '#/components/schemas/Photo'
     Camera:
       type: object
       description: Camera metadata attached to a photo record.
@@ -141,10 +128,10 @@ components:
           type: string
           description: Full human-readable camera name.
           example: Front Hazard Avoidance Camera
-    LatestPhotosResponse:
+    PhotosResponse:
       type: object
       properties:
-        latest_photos:
+        photos:
           type: array
           items:
             $ref: '#/components/schemas/Photo'
@@ -199,6 +186,13 @@ components:
           - active
           - complete
           example: active
+    LatestPhotosResponse:
+      type: object
+      properties:
+        latest_photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
   parameters:
     rover:
       name: rover
